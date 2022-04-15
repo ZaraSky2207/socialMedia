@@ -1,3 +1,16 @@
 header {
     background-color: blue;
 }
+
+img {
+    width: 200px;
+    border-radius: 100px;
+    float: left;
+    margin-right: 10px;
+  }
+  .username {
+    font-weight: bold;
+  }
+  em {
+      color: pink;
+  }
