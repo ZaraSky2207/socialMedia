@@ -14,3 +14,25 @@ img {
   em {
       color: pink;
   }
+
+
+  /* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body{
+    background:rgb(45, 84, 84) ;
+  } */
+
+  .btn1{
+    border: none;
+    outline:none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+  }
