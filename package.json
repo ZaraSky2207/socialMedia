@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ZaraSky2207/socialMedia#readme",
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^5.1.3",
+    "jquery": "^3.6.0"
   }
 }
