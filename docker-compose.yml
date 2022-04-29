@@ -1,0 +1,60 @@
+version: "3.7"
+services:
+  app:
+    container_name: social-media-app
+    image: lorisleiva/laravel-docker:8.1
+    command: [
+        'php',
+        'artisan',
+        'serve',
+        '--host=0.0.0.0',
+        '--port=4001'
+    ]
+    ports:
+      - 4001:4001
+    volumes:
+      - ./:/var/www/
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - social-media-network
+
+  db:
+    container_name: social-media-database
+    image: mysql:8.0
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    command: [
+        'mysqld',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_ROOT_HOST: '%'
+    networks:
+      - social-media-network
+
+  adminer:
+    container_name: social-media-adminer
+    image: adminer
+    environment:
+      ADMINER_DESIGN: lucas-sandery
+    ports:
+      - 4002:8080
+    networks:
+      social-media-network:
+    depends_on:
+      - db
+
+networks:
+  social-media-network:
+    driver: bridge
